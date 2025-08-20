@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TNHS - CSS Grades</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff; /* Light blue background */
+    color: #333;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .container {
+    background-color: #fff; /* White container */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+
+  h2 {
+    color: #005a9c; /* Dark blue for headings */
+    margin-bottom: 20px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #005a9c;
+  }
+
+  input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #b0e0e6; /* Light blue border */
+    border-radius: 5px;
+    box-sizing: border-box; /* Ensures padding doesn't affect total width */
+    transition: border-color 0.3s ease;
+  }
+
+  input[type="email"]:focus {
+    border-color: #005a9c; /* Dark blue on focus */
+    outline: none;
+  }
+
+  button {
+    background-color: #007acc; /* Bright blue button */
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    width: 100%;
+  }
+
+  button:hover {
+    background-color: #005a9c; /* Darker blue on hover */
+  }
+
+  #result {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e6f7ff; /* Lighter blue for result box */
+    border: 1px solid #b0e0e6;
+    border-radius: 5px;
+    text-align: left;
+  }
+
+  #result h3 {
+    color: #005a9c;
+    margin-top: 0;
+  }
+
+  #result p {
+    margin: 5px 0;
+  }
+
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 480px) {
+    body {
+      padding: 10px;
+    }
+    .container {
+      padding: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Enter your email:</h2>
+
+  <form id="myForm">
+    <input type="email" id="email" name="email" required>
+    <button type="submit">Submit</button>
+  </form>
+
+  <div id="result"></div>
+</div>
+
+<script>
+document.getElementById("myForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // Prevent form submission
+
+  const emailInput = document.getElementById("email");
+  const email = emailInput.value;
+  const resultDiv = document.getElementById("result");
+  
+  // Data included from the image you provided
+  const grades = {
+    "jmabersabal07@gmail.com": 88,
+    "rmcaga07@gmail.com": 85,
+    "wccannen07@gmail.com": 84,
+    "dpducay07@gmail.com": 85,
+    "jmcelmedulan06@gmail.com": 81,
+    "dddfuentes08@gmail.com": 96,
+    "krkc07@gmail.com": 88,
+    "jalopez06@gmail.com": 80,
+    "mpmabasle08@gmail.com": 86,
+    "jltmacaldo08@gmail.com": 84,
+    "jmmariquit08@gmail.com": 95,
+    "jmmarvan2008@gmail.com": 80,
+    "pjoolazo07@gmail.com": 82,
+    "ckapaluga08@gmail.com": 82,
+    "kdtpero08@gmail.com": 80,
+    "jmasenojas08@gmail.com": 81,
+    "icetanjay08@gmail.com": 81,
+    "jmcagmat08@gmail.com": 88,
+    "kcristal08@gmail.com": 84,
+    "mryducay07@gmail.com": 82,
+    "jdumalagan07@gmail.com": 81,
+    "dgaely07@gmail.com": 83,
+    "gtfernandez07@gmail.com": 95,
+    "kllagarto07@gmail.com": 93,
+    "ldpanuncia07@gmail.com": 82,
+    "eslina08@gmail.com": 83,
+    "llsevilla08@gmail.com": 90,
+    "rjmtagab08@gmail.com": 85,
+    "dgveginia07@gmail.com": 81
+  };
+
+  if (email) {
+    if (grades.hasOwnProperty(email)) {
+      const grade = grades[email];
+      let message = "";
+
+      if (grade <= 74) {
+        message = "You did not pass the subject!";
+      } else if (grade >= 75 && grade < 80) {
+        message = "Keep it up! Stay Focused.";
+      } else if (grade >= 80 && grade < 90) {
+        message = "You are getting there!";
+      } else if (grade >= 90 && grade <= 95) {
+        message = "Enjoy studying!";
+      } else if (grade > 95) {
+        message = "Excellent! Congratulations!";
+      }
+      
+      resultDiv.innerHTML = "<h3>Data found.</h3>" +
+                             "<p>Grade: " + grade + "</p>" +
+                             "<p>Remarks: " + message + "</p>";
+    } else {
+      resultDiv.innerHTML = "<p>Email not found in our records.</p>";
+    }
+  } else {
+    resultDiv.innerHTML = "<p>No email provided.</p>";
+  }
+});
+</script>
+
+</body>
+</html>
